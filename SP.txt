@@ -1,37 +1,36 @@
 import java.util.Scanner;
 
 class Graph{
-    private int n;           //노드들의 수
-    private int maps[][];    //노드들간의 가중치 저장할 변수
+    private int n;           //노드의 수
+    private int adj[][];    //노드들 간의 가중치 저장 변수
 
     public Graph(int n){
         this.n = n;
-        maps = new int[n+1][n+1];
-
+        adj = new int[n+1][n+1];
     }
 
-    public void input(int i,int j,int w){
-        maps[i][j] = w;
-        maps[j][i] = w;
+    public void input(int i, int j, int w){
+        adj[i][j] = w;
+        adj[j][i] = w;
     }
 
     public void dijkstra(int start){
-        int D[] = new int[n+1];          //최단 거리를 저장할 변수
-        boolean[] check = new boolean[n+1];     //해당 노드를 방문했는지 체크할 변수
+        int D[] = new int[n+1];          //최단 거리 저장 변수
+        boolean[] visited = new boolean[n+1];     //해당 노드를 방문했는지 체크할 변수
 
-        //distance값 초기화.
+        //distance 값 초기화
         for(int i = 1; i < n + 1; i++){
             D[i] = Integer.MAX_VALUE;
         }
 
-        //시작노드값 초기화.
+        //시작 노드 값 초기화
         D[start] =0;
-        check[start] =true;
+        visited[start] =true;
 
-        //연결노드 distance갱신
+        //연결 노드 D 갱신
         for(int i = 1; i < n + 1; i++){
-            if(!check[i] && maps[start][i] !=0){
-                D[i] = maps[start][i];
+            if(!visited[i] && adj[start][i] !=0){
+                D[i] = adj[start][i];
             }
         }
 
@@ -42,7 +41,7 @@ class Graph{
 
             //최소값 찾기
             for(int i = 1 ; i < n + 1; i++){
-                if(!check[i] && D[i] != Integer.MAX_VALUE){
+                if(!visited[i] && D[i] != Integer.MAX_VALUE){
                     if(D[i] < min){
                         min=D[i];
                         min_index = i;
@@ -50,11 +49,11 @@ class Graph{
                 }
             }
 
-            check[min_index] = true;
+            visited[min_index] = true;
             for(int i = 1; i < n + 1; i++){
-                if(!check[i] && maps[min_index][i]!=0){
-                    if(D[i]>D[min_index]+maps[min_index][i]){
-                        D[i] = D[min_index]+maps[min_index][i];
+                if(!visited[i] && adj[min_index][i]!=0){
+                    if(D[i] > D[min_index] + adj[min_index][i]){
+                        D[i] = D[min_index] + adj[min_index][i];
                     }
                 }
             }

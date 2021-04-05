@@ -34,7 +34,6 @@ class Graph{
             }
         }
 
-
         for(int a = 0; a < n - 1; a++){
             int min=Integer.MAX_VALUE;
             int min_index=-1;

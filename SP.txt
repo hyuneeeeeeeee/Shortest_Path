@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 class Graph{
     private int n;           //노드의 수
-    private int adj[][];    //노드들 간의 가중치 저장 변수
+    private int adj[][];    //노드 간의 가중치 저장 변수
 
     public Graph(int n){
         this.n = n;

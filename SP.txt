@@ -1,1 +1,89 @@
+import java.util.Scanner;
 
+class Graph{
+    private int n;           //노드들의 수
+    private int maps[][];    //노드들간의 가중치 저장할 변수
+
+    public Graph(int n){
+        this.n = n;
+        maps = new int[n+1][n+1];
+
+    }
+
+    public void input(int i,int j,int w){
+        maps[i][j] = w;
+        maps[j][i] = w;
+    }
+
+    public void dijkstra(int start){
+        int D[] = new int[n+1];          //최단 거리를 저장할 변수
+        boolean[] check = new boolean[n+1];     //해당 노드를 방문했는지 체크할 변수
+
+        //distance값 초기화.
+        for(int i = 1; i < n + 1; i++){
+            D[i] = Integer.MAX_VALUE;
+        }
+
+        //시작노드값 초기화.
+        D[start] =0;
+        check[start] =true;
+
+        //연결노드 distance갱신
+        for(int i = 1; i < n + 1; i++){
+            if(!check[i] && maps[start][i] !=0){
+                D[i] = maps[start][i];
+            }
+        }
+
+
+        for(int a = 0; a < n - 1; a++){
+            int min=Integer.MAX_VALUE;
+            int min_index=-1;
+
+            //최소값 찾기
+            for(int i = 1 ; i < n + 1; i++){
+                if(!check[i] && D[i] != Integer.MAX_VALUE){
+                    if(D[i] < min){
+                        min=D[i];
+                        min_index = i;
+                    }
+                }
+            }
+
+            check[min_index] = true;
+            for(int i = 1; i < n + 1; i++){
+                if(!check[i] && maps[min_index][i]!=0){
+                    if(D[i]>D[min_index]+maps[min_index][i]){
+                        D[i] = D[min_index]+maps[min_index][i];
+                    }
+                }
+            }
+        }
+
+        for(int i = 1; i < n + 1; i++){
+            System.out.print(D[i]+" ");
+        }
+        System.out.println("");
+    }
+}
+
+public class Shortest_Path{
+
+    public static void main(String[] args){
+        Scanner scanner = new Scanner(System.in);
+
+        int V = scanner.nextInt();      //정점의 수
+        int E = scanner.nextInt();      //간선의 수
+        int s = scanner.nextInt();      //출발점 s
+
+        Graph G = new Graph(V);
+
+        for(int i = 0; i < E; i++){
+            int a = scanner.nextInt();
+            int b = scanner.nextInt();
+            int c = scanner.nextInt();
+        }
+
+        G.dijkstra(s);
+    }
+}

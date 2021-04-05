@@ -2,16 +2,16 @@ import java.util.Scanner;
 
 class Graph{
     private int n;           //노드의 수
-    private int adj[][];    //노드들 간의 가중치 저장 변수
+    private int weight[][];    //노드들 간의 가중치 저장 변수
 
     public Graph(int n){
         this.n = n;
-        adj = new int[n+1][n+1];
+        weight = new int[n+1][n+1];
     }
 
     public void input(int i, int j, int w){
-        adj[i][j] = w;
-        adj[j][i] = w;
+        weight[i][j] = w;
+        weight[j][i] = w;
     }
 
     public void dijkstra(int start){
@@ -29,8 +29,8 @@ class Graph{
 
         //연결 노드 D 갱신
         for(int i = 1; i < n + 1; i++){
-            if(!visited[i] && adj[start][i] != 0){
-                D[i] = adj[start][i];
+            if(!visited[i] && weight[start][i] != 0){
+                D[i] = weight[start][i];
             }
         }
 
@@ -50,9 +50,9 @@ class Graph{
 
             visited[min_index] = true;
             for(int i = 1; i < n + 1; i++){
-                if(!visited[i] && adj[min_index][i] != 0){
-                    if(D[i] > D[min_index] + adj[min_index][i]){
-                        D[i] = D[min_index] + adj[min_index][i];
+                if(!visited[i] && weight[min_index][i] != 0){
+                    if(D[i] > D[min_index] + weight[min_index][i]){
+                        D[i] = D[min_index] + weight[min_index][i];
                     }
                 }
             }

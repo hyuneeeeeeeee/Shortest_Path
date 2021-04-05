@@ -16,7 +16,7 @@ class Graph{
 
     public void dijkstra(int start){
         int D[] = new int[n+1];          //최단 거리 저장 변수
-        boolean[] visited = new boolean[n+1];     //해당 노드를 방문했는지 체크할 변수
+        boolean[] visited = new boolean[n + 1];     //해당 노드를 방문했는지 체크할 변수
 
         //distance 값 초기화
         for(int i = 1; i < n + 1; i++){
@@ -29,7 +29,7 @@ class Graph{
 
         //연결 노드 D 갱신
         for(int i = 1; i < n + 1; i++){
-            if(!visited[i] && adj[start][i] !=0){
+            if(!visited[i] && adj[start][i] != 0){
                 D[i] = adj[start][i];
             }
         }
@@ -50,7 +50,7 @@ class Graph{
 
             visited[min_index] = true;
             for(int i = 1; i < n + 1; i++){
-                if(!visited[i] && adj[min_index][i]!=0){
+                if(!visited[i] && adj[min_index][i] != 0){
                     if(D[i] > D[min_index] + adj[min_index][i]){
                         D[i] = D[min_index] + adj[min_index][i];
                     }

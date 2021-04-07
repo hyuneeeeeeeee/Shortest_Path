@@ -1,0 +1,44 @@
+import java.util.Scanner;
+
+class graph {
+    int n;           //노드의 수
+    int[][] w;       //노드들 간의 가중치 저장 변수
+
+    public graph(int n) {
+        this.n = n;
+        w = new int[n + 1][n + 1];
+    }
+
+    public void input(int i, int j, int k) {
+        w[i][j] = k;
+        w[j][i] = k;
+    }
+}
+
+public class ShortestPath {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        int node, line, s;
+        node = scanner.nextInt();      //정점의 수
+        line = scanner.nextInt();      //간선의 수
+        s = scanner.nextInt();         //출발점 s
+
+        graph G = new graph(node);
+        for (int a = 0; a < line; a++) {
+            int i = scanner.nextInt();
+            int j = scanner.nextInt();
+            int k = scanner.nextInt();
+            G.input(i, j, k);
+        }
+
+        int[] D;
+        D = shortestpath(G, s, node);
+        
+        for (int i = 1; i < node + 1; i++)
+            System.out.print(D[i] + " ");
+        
+        scanner.close();
+    }
+}

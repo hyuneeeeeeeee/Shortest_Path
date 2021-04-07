@@ -16,7 +16,6 @@ class graph {
 }
 
 public class ShortestPath {
-
     public static int[] dijkstra(graph G, int start, int n) {
         int[] D = new int[n + 1];          //최단 거리 저장 변수
         boolean[] visited = new boolean[n + 1];     //해당 노드를 방문했는지 체크할 변수
@@ -28,8 +27,8 @@ public class ShortestPath {
         //시작 노드 값 초기화
         D[start] = 0;
         visited[start] = true;
-
-        //연결 노드 D 갱신
+        
+       //연결 노드 D 갱신
         for (int i = 1; i < n + 1; i++)
             if (!visited[i] && G.weight[start][i] != 0)      //방문하지 않았고 시작점에서 i까지의 가중치가 존재한다면, 거리 i에 시작점에서 i까지의 가중치 저장
                 D[i] = G.weight[start][i];
@@ -46,8 +45,8 @@ public class ShortestPath {
                         min_index = j;
                     }
                 }
-
             visited[min_index] = true;  //위의 반복문을 통해 도출된 가장 가까운 노드에 방문 표시
+            
             for (int k = 1; k < n + 1; k++)
                 if (!visited[k] && G.weight[min_index][k] != 0)      //방문하지 않았고 min_index와의 가중치가 존재하는 노드라면 (min_index에서 연결되어있어야 함)
                     if (D[k] > D[min_index] + G.weight[min_index][k]) //지금 그 노드가 가지고 있는 거리 값이 min_index와 가중치를 더한 값보다 크다면 최단거리 갱신
@@ -73,7 +72,7 @@ public class ShortestPath {
                 G.input(i, j, k);
             }
 
-            int[] D;
+            int[] D = new int [node + 1];
             D = dijkstra(G, s, node);
 
             for (int i = 1; i < node + 1; i++)

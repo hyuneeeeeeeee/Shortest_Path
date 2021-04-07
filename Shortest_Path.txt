@@ -73,7 +73,7 @@ public class ShortestPath {
         }
 
         int[] D;
-        D = shortestpath(G, s, node);
+        D = dijkstra(G, s, node);
         
         for (int i = 1; i < node + 1; i++)
             System.out.print(D[i] + " ");

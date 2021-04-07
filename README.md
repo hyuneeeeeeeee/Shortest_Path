@@ -33,7 +33,7 @@ for (int a = 0; a < line; a++) {
    	D[i] = Integer.MAX_VALUE;
    ```
 
-2.  while(s로부터의 최단 거리가 확정되지 않은 점이 있으면) visited 배열에서 false 값으로 둔다.
+2.  s로부터의 최단 거리가 확정되지 않은 점이 있으면 visited 배열에서 false 값으로 둔다.
 
    ```java
    boolean[] visited = new boolean[n + 1];

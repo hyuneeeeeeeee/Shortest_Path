@@ -52,6 +52,8 @@ public class ShortestPath {
                 if (!visited[k] && G.weight[min_index][k] != 0)      //방문하지 않았고 min_index와의 가중치가 존재하는 노드라면 (min_index에서 연결되어있어야 함)
                     if (D[k] > D[min_index] + G.weight[min_index][k]) //지금 그 노드가 가지고 있는 거리 값이 min_index와 가중치를 더한 값보다 크다면 최단거리 갱신
                         D[k] = D[min_index] + G.weight[min_index][k];
+                        
+        return D;
         }
 
     public static void main(String[] args) {
